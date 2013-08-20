@@ -1,0 +1,25 @@
+{
+  "name": "static-server",
+  "version": "0.0.1",
+  "description": "serve static files to test",
+  "main": "server.js",
+  "bin": {
+    "static-server": "server.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "PORT=3000 ROOT=$PWD/example/public node ./bin/server.js"
+  },
+  "keywords": [
+    "server"
+  ],
+  "author": "ishiduca@gmail.com",
+  "dependencies": {
+    "filed": "0.0.x"
+  },
+  "devDependencies": {
+    "qunitjs": "1.10.x",
+    "qunit-tap": "1.4.x"
+  },
+  "license": "MIT"
+}
