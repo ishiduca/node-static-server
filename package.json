@@ -15,7 +15,7 @@
   ],
   "author": "ishiduca@gmail.com",
   "dependencies": {
-    "filed": "0.0.x"
+    "filed": "0.1.x"
   },
   "devDependencies": {
     "qunitjs": "1.10.x",
