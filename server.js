@@ -1,5 +1,5 @@
 function decode (str) {
-   str.split('/').map(function (str) { return decodeURIComponent(str) }).join('/')
+   return str.split('/').map(function (str) { return decodeURIComponent(str) }).join('/')
 }
 
 module.exports = function createServer (params) {

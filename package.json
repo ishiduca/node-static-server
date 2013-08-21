@@ -1,6 +1,6 @@
 {
   "name": "static-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "serve static files to test",
   "main": "server.js",
   "bin": {
