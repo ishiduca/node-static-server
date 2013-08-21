@@ -1,3 +1,7 @@
+function decode (str) {
+   str.split('/').map(function (str) { return decodeURIComponent(str) }).join('/')
+}
+
 module.exports = function createServer (params) {
     'use strict'
 
@@ -15,7 +19,7 @@ module.exports = function createServer (params) {
         if (pathname === '/')
             pathname = params.index || '/index.html'
 
-        var filepath = path.join( params.root, pathname )
+        var filepath = path.join(params.root, decode(pathname))
 
         filed(filepath).pipe(res)
 

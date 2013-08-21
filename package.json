@@ -21,5 +21,9 @@
     "qunitjs": "1.10.x",
     "qunit-tap": "1.4.x"
   },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ishiduca/node-static-server"
+  },
   "license": "MIT"
 }

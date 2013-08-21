@@ -1,4 +1,4 @@
-# serve-statics
+# node-static-server
 
 Serve static files to test
 
