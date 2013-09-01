@@ -7,7 +7,15 @@ module.exports = function () {
         var d = ''
         req.on('data', function (c) { d += c })
         req.on('end', function () {
-            var parsed = JSON.parse(d)
+            var parsed
+            try {
+                parsed = JSON.parse(d)
+            } catch (err) {
+                res.writeHead(500, {'content-type': 'application/json'})
+                res.end(JSON.stringify({error: err.messsage}))
+                return console.error(err)
+            }
+
             parsed.error  = 0
             parsed.result = 'ok'
 
