@@ -1,6 +1,6 @@
 {
   "name": "static-server",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "serve static files to test",
   "main": "server.js",
   "bin": {
@@ -8,14 +8,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "PORT=3000 ROOT=$PWD/example/public node ./bin/server.js"
   },
   "keywords": [
     "server"
   ],
   "author": "ishiduca@gmail.com",
   "dependencies": {
-    "filed": "0.1.x"
+    "filed": "0.1.x",
+	"minimist": "0.x.x"
   },
   "devDependencies": {
     "qunitjs": "1.10.x",

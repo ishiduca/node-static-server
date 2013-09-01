@@ -8,6 +8,7 @@ Serve static files to test
 
 ## usage
 
-    $ PORT=3000 ROOT=$PWD/public static-server
-    # PORT ... port number 
-    # ROOT ... root directory
+    $ static-server -p 3000 -r $PWD -m ./app.js
+	# -p ... port number
+	# -r ... root directory
+	# -m ... path to middleware files

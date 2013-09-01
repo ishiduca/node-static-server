@@ -1,15 +1,47 @@
 #!/usr/bin/env node
 'use strict'
 
-// ROOT=$PWD/t/public PORT=3001 node bin/server
+var path  = require('path')
+var minim = require('minimist')
+var argv  = minim(process.argv.slice(2), {
+    alias: {
+        p: 'port'
+      , r: 'root'
+      , m: 'middles'
+      , i: 'index'
+    }
+  , default: {
+        port: 3000
+      , root: process.env.PWD
+    }
+  , string: ['port', 'root', 'index']
+})
 
-var root = process.env.ROOT || __dirname
-var port = process.env.PORT || 3000
+var required = ['port', 'root']
+var extra    = ['index', 'middles']
 
-var path = require('path')
-var app  = require(path.join( __dirname, '../server'))({root: root})
+var params = extra.reduce(function (_params, key) {
+    if (argv[key]) _params[key] = argv[key]
+    return _params
+}
+, required.reduce(function (_params, key) {
+    if (! argv[key]) throw new Error('"' + key + '" not found')
+    _params[key] = argv[key]
+    return _params
+}, {}))
 
-app.listen(port, function () {
-    console.log('server start to listen on port "%s"', port)
-    console.log('root dir - "%s"', root)
+var typeofMiddles = Object.prototype.toString.call(params.middles)
+
+params.middles = typeofMiddles === '[object Array]'
+			   ? params.middles.map(function (middle) {
+				     return require(middle)()
+			     })
+			   : typeofMiddles === '[object String]'
+			   ? [ require(params.middles)() ]
+			   : []
+
+var app = require(path.join(__dirname , '../server'))(params)
+
+app.listen(params.port, function () {
+	console.log(params)
 })

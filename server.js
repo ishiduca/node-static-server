@@ -13,9 +13,18 @@ module.exports = function createServer (params) {
     var http  = require('http')
     var filed = require('filed')
 
-    return http.createServer(function _onRequest (req, res) {
-        var pathname = url.parse(req.url).pathname
+    var typeIsMiddlewares = Object.prototype.toString.call(params.middles)
+    var middles = typeIsMiddlewares === '[object Array]'
+                ? params.middles.filter(function (middle) {
+                      return typeof middle === 'function'
+                  })
+                : typeIsMiddlewares === '[object Function]'
+                ? [ params.middles ]
+                : []
 
+
+    middles.push(function statics (req, res) {
+        var pathname = url.parse(req.url).pathname
         if (pathname === '/')
             pathname = params.index || '/index.html'
 
@@ -28,5 +37,14 @@ module.exports = function createServer (params) {
           , pathname
           , filepath
         )
+    })
+
+
+    return http.createServer(function onRequest (req, res) {
+        var next = function (n) {
+            if (typeof middles[n] !== 'function') return
+            middles[n](req, res, function _next () { next(n + 1) })
+        }
+        next(0)
     })
 }
