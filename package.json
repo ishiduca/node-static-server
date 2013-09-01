@@ -7,7 +7,7 @@
     "static-server": "./bin/server.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "server"
@@ -15,7 +15,7 @@
   "author": "ishiduca@gmail.com",
   "dependencies": {
     "filed": "0.1.x",
-	"minimist": "0.x.x"
+    "minimist": "0.x.x"
   },
   "devDependencies": {
     "qunitjs": "1.10.x",
